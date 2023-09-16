@@ -52,7 +52,7 @@ typedef struct nodestr
  * @histcount: line count of the history
  * @read_file_descriptor: file descriptor to read
  * @cmd_buf_type: CMD type
- * @envinon: pointer to pointer modified environ copy
+ * @environ: pointer to pointer modified environ copy
  * @arg: a string generated from getline containing arguements
  * @status: last executed command status
  * @env_changed: display on when environ changed
