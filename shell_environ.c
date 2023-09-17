@@ -94,7 +94,7 @@ int custom_set_environ(code_t *info)
 /**
  * custom_unset_environ - Remove an environ variable
  * @info: pointer to code_t struct
- * 
+ *
  * Return: Always 0
  */
 int custom_unset_environ(code_t *info)

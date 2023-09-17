@@ -2,7 +2,7 @@
 /**
  * custom_cd - function to change current directory
  * @info: pointer to code_t
- * 
+ *
  * Return: Always 0
  */
 int custom_cd(code_t *info)
@@ -52,7 +52,7 @@ int custom_cd(code_t *info)
 /**
  * custom_history - function to display history list
  * @info: pointer to code_t
- * 
+ *
  *  Return: Always 0
  */
 int custom_history(code_t *info)
@@ -64,7 +64,7 @@ int custom_history(code_t *info)
 /**
  * custom_help - funtion that changes current directory
  * @info: pointer to code_t struct
- * 
+ *
  * Return: Always 0
  */
 int custom_help(code_t *info)
@@ -83,7 +83,7 @@ int custom_help(code_t *info)
  * custom_exit - function to exit
  * @info: pointer to code_t
  * Return: given exit status
- * 
+ *
  */
 int custom_exit(code_t *info)
 {

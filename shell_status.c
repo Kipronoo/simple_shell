@@ -90,19 +90,19 @@ char *path_search(code_t *info, char *strpath, char *cmd)
  * @info: pointer to code_t struct
  *
  * Return: 0 execute successfully,
- * 	1 fail to executed,
- * 	2 command signal exited,
- *     -1 command not found
+ * 1 fail to executed,
+ * 2 command signal exited,
+ * -1 command not found
  */
 int command_find(code_t *info)
 {
 	int n, command_return = -1;
 	command_list new_command[] = {
 		{"exit", custom_exit},
-		{"env", custom_env},
+		{"env", custom_setenv},
 		{"help", custom_help},
 		{"history", custom_history},
-		{"setenv", custom_set_environ},
+		{"setenv", custom_unsetenv},
 		{"unsetenv", custom_unset_environ},
 		{"cd", custom_cd},
 		{"alias", custom_alias},

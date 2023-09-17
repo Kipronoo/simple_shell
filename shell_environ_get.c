@@ -2,7 +2,7 @@
 /**
  * custom_environ - environ linked list
  * @info: pointer to code_t
- * 
+ *
  * Return: Always 0
  */
 int custom_environ(code_t *info)
@@ -41,7 +41,7 @@ char *custom_get_environ(code_t *info, const char *name)
 /**
  * custom_print_environ - print current environ
  * @info: pointer to code_t struct
- * 
+ *
  * Return: Always 0
  */
 int custom_print_environ(code_t *info)
@@ -53,7 +53,7 @@ int custom_print_environ(code_t *info)
 /**
  * custom_environ_get - function to return the string array
  * @info: pointer to the code_t struct
- * 
+ *
  * Return: Always 0
  */
 char **custom_environ_get(code_t *info)

@@ -12,26 +12,35 @@
 #include <fcntl.h>
 #include <errno.h>
 
-#define CONVERT_UNSIGNED 2
-#define CONVERT_LOWERCASE 1
+extern char **environ;
 
 #define BUFFER_SIZE 50
-#define BUS_FLUSH -1
+
+
+/* for read/write buffers */
 #define READ_BUF_SIZE 1024
 #define WRITE_BUF_SIZE 1024
+#define BUF_FLUSH -1
 
-#define HIST_MAX 4096
-#define HIST_FILE ".simple_shell_history"
-
+/* for command chaining */
 #define CMD_NORM	0
 #define CMD_OR		1
 #define CMD_AND		2
 #define CMD_CHAIN	3
 
+/* for convert_number() */
+#define CONVERT_LOWERCASE	1
+#define CONVERT_UNSIGNED	2
+
+/* 1 if using system getline() */
 #define USE_GETLINE 0
 #define USE_STRTOK 0
 
-extern char **environ;
+#define HIST_FILE	".simple_shell_history"
+#define HIST_MAX	4096
+
+
+
 
 /**
  * struct nodestr - singly linked list
@@ -64,14 +73,13 @@ typedef struct nodestr
  * @history: history node
  * @fname: filename
  * @err_num: error msg
- * @linecount_flag: count line if on
  * @line_count: the error count
+ * @linecount_flag: count line if on
  */
 typedef struct codeinfo
 {
 	char **cmd_buf;
 	int histcount;
-
 	int read_file_descriptor;
 	int cmd_buf_type;
 	char **environ;
@@ -123,6 +131,11 @@ char *custom_memset(char *s, char b, unsigned int n);
 void string_free(char **ptr);
 int memory_free(void **ptr);
 void *custom_realloc(void *ptr, unsigned int o_size, unsigned int n_size);
+
+
+
+/* loophsh.c */
+int loophsh(char **);
 
 int custom_put_fd(char c, int fd);
 int custom_puts_fd(char *str, int fd);
@@ -202,5 +215,7 @@ int custom_environ(code_t *info);
 char *custom_get_environ(code_t *info, const char *name);
 int custom_print_environ(code_t *info);
 char **custom_environ_get(code_t *info);
+
+
 
 #endif

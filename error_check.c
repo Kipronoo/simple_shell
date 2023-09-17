@@ -46,7 +46,7 @@ int custom_puts_fd(char *str, int fd)
  * custom_putchar - function to write to standard ouput
  * @c: character to output
  * Return: 1 success
- * 
+ *
  */
 int custom_putchar(char c)
 {

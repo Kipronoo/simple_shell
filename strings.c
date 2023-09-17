@@ -71,7 +71,6 @@ char *custom_strncpy(char *dest, char *src, int n)
 	}
 	return (str);
 }
-
 /**
  * custom_strcpy - copies a string
  * @dest: pointer to the destination

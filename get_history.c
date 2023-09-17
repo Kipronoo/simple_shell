@@ -29,7 +29,7 @@ char *get_history(code_t *info)
  * reset_history - function to renumbers the history linked list
  * @info: pointer to code_t struct
  *
- * Return: history_count
+ * Return: histcount
  */
 int reset_history(code_t *info)
 {
@@ -48,12 +48,12 @@ int reset_history(code_t *info)
  * history - function to read history from file
  * @info: pointer to code_t struct
  *
- * Return: histcount on success, 0 otherwise
+ * Return: history_count on success, 0 otherwise
  */
 int history(code_t *info)
 {
-	int n, last = 0, count_line = 0;
-	ssize_t file_descriptor, rdlen, fsize = 0;
+	int n, last = 0, line = 0;
+	ssize_t file_descriptor, length, fsize = 0;
 	struct stat st;
 	char *buffer = NULL, *filename = get_history(info);
 
@@ -71,22 +71,22 @@ int history(code_t *info)
 	buffer = malloc(sizeof(char) * (fsize + 1));
 	if (!buffer)
 		return (0);
-	rdlen = read(file_descriptor, buffer, fsize);
+	length = read(file_descriptor, buffer, fsize);
 	buffer[fsize] = 0;
-	if (rdlen <= 0)
+	if (length <= 0)
 		return (free(buffer), 0);
 	close(file_descriptor);
 	for (n = 0; n < fsize; n++)
 		if (buffer[n] == '\n')
 		{
 			buffer[n] = 0;
-			add_history(info, buffer + last, count_line++);
+			add_history(info, buffer + last, line++);
 			last = n + 1;
 		}
 	if (last != n)
-		add_history(info, buffer + last, count_line++);
+		add_history(info, buffer + last, line++);
 	free(buffer);
-	info->histcount = count_line;
+	info->histcount = line;
 	while (info->histcount-- >= HIST_MAX)
 		node_index_delete(&(info->history), 0);
 	reset_history(info);
@@ -122,23 +122,23 @@ int add_history(code_t *info, char *buffer, int count)
  */
 int create_history(code_t *info)
 {
-	ssize_t fd; /* fd file descriptor */
+	ssize_t file_descriptor; /* fd file descriptor */
 	char *filename = get_history(info);
 	node_t *node = NULL;
 
 	if (!filename)
 		return (-1);
 
-	fd = open(filename, O_CREAT | O_TRUNC | O_RDWR, 0644);
+	file_descriptor = open(filename, O_CREAT | O_TRUNC | O_RDWR, 0644);
 	free(filename);
-	if (fd == -1)
+	if (file_descriptor == -1)
 		return (-1);
 	for (node = info->history; node; node = node->next)
 	{
-		custom_puts_fd(node->str, fd);
-		custom_put_fd('\n', fd);
+		custom_puts_fd(node->str, file_descriptor);
+		custom_put_fd('\n', file_descriptor);
 	}
-	custom_put_fd(BUF_FLUSH, fd);
-	close(fd);
+	custom_put_fd(BUF_FLUSH, file_descriptor);
+	close(file_descriptor);
 	return (1);
 }

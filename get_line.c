@@ -31,39 +31,39 @@ int custom_getline(code_t *info, char **pt, size_t *len)
 {
 	static char buf[READ_BUF_SIZE];
 	static size_t n, length;
-	size_t k;
-	ssize_t r = 0, s = 0;
-	char *p = NULL, *p_new = NULL, *c;
+	size_t q;
+	ssize_t t = 0, j = 0;
+	char *p = NULL, *p_new = NULL, *str;
 
 	p = *pt;
 	if (p && len)
-		s = *len;
+		j = *len;
 	if (n == length)
 		n = length = 0;
 
-	r = buffer(info, buf, &length);
-	if (r == -1 || (r == 0 && length == 0))
+	t = buffer(info, buf, &length);
+	if (t == -1 || (t == 0 && length == 0))
 		return (-1);
 
-	c = custom_strchr(buf + n, '\n');
-	k = c ? 1 + (unsigned int)(c - buf) : length;
-	p_new = custom_realloc(p, s, s ? s + k : k + 1);
+	str = custom_strchr(buf + n, '\n');
+	q = str ? 1 + (unsigned int)(str - buf) : length;
+	p_new = custom_realloc(p, j, j ? j + q : q + 1);
 	if (!p_new)
 		return (p ? free(p), -1 : -1);
 
-	if (s)
-		custom_strncat(p_new, buf + n, k - n);
+	if (j)
+		custom_strncat(p_new, buf + n, q - n);
 	else
-		custom_strncpy(p_new, buf + n, k - n + 1);
+		custom_strncpy(p_new, buf + n, q - n + 1);
 
-	s += k - n;
-	n = k;
+	j += q - n;
+	n = q;
 	p = p_new;
 
 	if (len)
-		*len = s;
+		*len = j;
 	*pt = p;
-	return (s);
+	return (j);
 }
 
 /**
@@ -99,6 +99,7 @@ ssize_t buffer_command(code_t *info, char **buffer, size_t *length)
 			info->linecount_flag = 1;
 			replace_instance(*buffer);
 			add_history(info, *buffer, info->histcount++);
+			if (custom_strchr(*buffer, ';'))
 			{
 				*length = read;
 				info->cmd_buf = buffer;
@@ -116,40 +117,40 @@ ssize_t buffer_command(code_t *info, char **buffer, size_t *length)
  */
 ssize_t get_line(code_t *info)
 {
-	static char *buf;
-	static size_t i, j, length;
+	static char *buffer;
+	static size_t n, m, length;
 	ssize_t read = 0;
-	char **buf_p = &(info->arg), *p;
+	char **buf = &(info->arg), *ptr;
 
 	_putchar(BUF_FLUSH);
-	read = buffer_command(info, &buf, &length);
+	read = buffer_command(info, &buffer, &length);
 	if (read == -1)
 		return (-1);
 	if (length)
 	{
-		j = i;
-		p = buf + i;
+		m = n;
+		ptr = buffer + n;
 
-		chain_check(info, buf, &j, i, length);
-		while (j < length)
+		chain_check(info, buffer, &m, n, length);
+		while (m < length)
 		{
-			if (chain_test(info, buf, &j))
+			if (chain_test(info, buffer, &m))
 				break;
-			j++;
+			m++;
 		}
 
-		i = j + 1;
-		if (i >= length)
+		n = m + 1;
+		if (n >= length)
 		{
-			i = length = 0;
+			n = length = 0;
 			info->cmd_buf_type = CMD_NORM;
 		}
 
-		*buf_p = p;
-		return (custom_strlen(p));
+		*buf = ptr;
+		return (custom_strlen(ptr));
 	}
 
-	*buf_p = buf;
+	*buf = buffer;
 	return (read);
 }
 

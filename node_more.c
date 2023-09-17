@@ -71,12 +71,12 @@ size_t length_list(const node_t *f)
  */
 node_t *node_begin_with_prefix(node_t *node, char *prefix, char c)
 {
-	char *p = NULL;
+	char *s = NULL;
 
 	while (node)
 	{
-		p = starts_check(node->str, prefix);
-		if (p && ((c == -1) || (*p == c)))
+		s = starts_check(node->str, prefix);
+		if (s && ((c == -1) || (*s == c)))
 			return (node);
 		node = node->next;
 	}

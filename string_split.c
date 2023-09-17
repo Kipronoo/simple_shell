@@ -14,7 +14,7 @@ char **string_to_word(char *str, char delimeter)
 		return (NULL);
 	for (n = 0; str[n] != '\0'; n++)
 		if ((str[n] != delimeter && str[n + 1] == delimeter) ||
-				    (str[n] != delimeter && !str[n + 1]) || str[n + 1] == delimeter)
+				(str[n] != delimeter && !str[n + 1]) || str[n + 1] == delimeter)
 			word++;
 	if (word == 0)
 		return (NULL);
@@ -63,13 +63,13 @@ char **custom_strtow(char *str, char *delimeter)
 		delimeter = " ";
 	for (n = 0; str[n] != '\0'; n++)
 		if (!delimiter_check(str[n], delimeter) &&
-			(delimiter_check(str[n + 1], delimeter) || !str[n + 1]))
+				(delimiter_check(str[n + 1], delimeter) || !str[n + 1]))
 			word++;
 
 	if (word == 0)
 		return (NULL);
 	v = malloc((1 + word) * sizeof(char *));
-	if (!s)
+	if (!v)
 		return (NULL);
 	for (n = 0, i = 0; i < word; i++)
 	{

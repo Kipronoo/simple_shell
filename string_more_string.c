@@ -57,7 +57,7 @@ char *custom_strcat(char *dest, char *src)
  * @str1: pointer to char
  * @str2: pointer to char
  *
- * Return: negative (s1 < s2), positive (s1 > s2), zero (s1 == s2)
+ * Return: negative (str1 < str2), positive (str1 > str2), zero (str1 == str2)
  */
 int custom_strcmp(char *str1, char *str2)
 {
