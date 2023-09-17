@@ -6,14 +6,14 @@
  * Return: Always 0
  */
 int custom_cd(code_t *info) {
-    char *target_dir;
-    char *oldpwd;
-    char buffer[1024];
+	char *target_dir;
+	char *oldpwd;
+	char buffer[1024];
 
-    target_dir = info->argv[1];
-    oldpwd = custom_get_environ(info, "PWD");
+	target_dir = info->argv[1];
+	oldpwd = custom_get_environ(info, "PWD");
 
-    if (!target_dir) {
+	if (!target_dir) {
         target_dir = custom_get_environ(info, "HOME");
         if (!target_dir) {
             target_dir = "/";
