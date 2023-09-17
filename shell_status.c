@@ -4,7 +4,7 @@
  * command_exec - function to determine a file is executable command
  * @info: pointer to the code_t struct
  * @path: file path
- *
+ * 
  * Return: 1 if true, 0 otherwise
  */
 int command_exec(code_t *info, char *path)
@@ -99,10 +99,10 @@ int command_find(code_t *info)
 	int n, command_return = -1;
 	command_list new_command[] = {
 		{"exit", custom_exit},
-		{"env", custom_setenv},
+		{"env", custom_print_environ},
 		{"help", custom_help},
 		{"history", custom_history},
-		{"setenv", custom_unsetenv},
+		{"setenv", custom_set_environ},
 		{"unsetenv", custom_unset_environ},
 		{"cd", custom_cd},
 		{"alias", custom_alias},
