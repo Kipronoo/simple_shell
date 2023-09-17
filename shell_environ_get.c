@@ -10,7 +10,7 @@ int custom_environ(code_t *info)
 	node_t *node = NULL;
 	size_t n;
 
-	for (n = 0; environ[i]; n++)
+	for (n = 0; environ[n]; n++)
 		create_node_end(&node, environ[n], 0);
 	info->env = node;
 	return (0);

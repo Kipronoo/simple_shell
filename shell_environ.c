@@ -62,7 +62,7 @@ int custom_unsetenv(code_t *info, char *var)
 		ptr = starts_check(node->str, var);
 		if (ptr && *ptr == '=')
 		{
-			info->env_changed = delete_node_at_index(&(info->env), n);
+			info->env_changed = node_index_delete(&(info->env), n);
 			n = 0;
 			node = info->env;
 			continue;

@@ -12,15 +12,15 @@ int custom_alias_unset(code_t *info, char *str)
 	char *ptr, c;
 	int pos;
 
-	ptr = _strchr(str, '=');
+	ptr = custom_strchr(str, '=');
 	if (!ptr)
 		return (1);
 	c = *ptr;
 	*ptr = 0;
 	pos = node_index_delete(&(info->alias),
-		node_index_get(info->alias, node_begin_with_prefix(info->alias, str, -1)));
+			node_index_get(info->alias, node_begin_with_prefix(info->alias, str, -1)));
 	*ptr = c;
-	return (ret);
+	return (pos);
 }
 
 /**
@@ -58,7 +58,7 @@ int custom_alias_print(node_t *node)
 	{
 		ptr = custom_strchr(node->str, '=');
 		for (a = node->str; a <= ptr; a++)
-		_putchar(*a);
+			_putchar(*a);
 		_putchar('\'');
 		_puts(ptr + 1);
 		_puts("'\n");
@@ -75,7 +75,7 @@ int custom_alias_print(node_t *node)
  */
 int custom_alias(code_t *info)
 {
-	int i = 0;
+	int n = 0;
 	char *ptr = NULL;
 	node_t *node = NULL;
 
@@ -89,13 +89,13 @@ int custom_alias(code_t *info)
 		}
 		return (0);
 	}
-	for (i = 1; info->argv[i]; i++)
+	for (n = 1; info->argv[n]; n++)
 	{
-		ptr = custom_strchr(info->argv[i], '=');
+		ptr = custom_strchr(info->argv[n], '=');
 		if (ptr)
-			custom_alias_set(info, info->argv[i]);
+			custom_alias_set(info, info->argv[n]);
 		else
-			custom_alias_print(node_begin_with_prefix(info->alias, info->argv[i], '='));
+			custom_alias_print(node_begin_with_prefix(info->alias, info->argv[n], '='));
 	}
 
 	return (0);

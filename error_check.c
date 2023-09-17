@@ -3,7 +3,7 @@
 /**
  * custom_put_fd - writes the character c to given fd
  * @c: character to print
- * @fd: filedescriptor
+ * @fd: file descriptor
  * Return: 1 success otherwise -1
  *
  */
@@ -46,7 +46,7 @@ int custom_puts_fd(char *str, int fd)
  * custom_putchar - function to write to standard ouput
  * @c: character to output
  * Return: 1 success
- *
+ * 
  */
 int custom_putchar(char c)
 {

@@ -3,7 +3,7 @@
 /**
  * ascii_to_integer - function to convert string to integer
  * @s: pointer to char
- * Return: converted number otherwise 0
+ * Return: converted number otherwise 0 
  */
 int ascii_to_integer(char *s)
 {
@@ -54,7 +54,7 @@ int is_alphabet(int c)
 }
 
 /**
- * delimiter_check - function to check character
+ * delimiter_check - function to check character 
  * @c: character
  * @delimiter: pointer to char
  * Return: 1 true, 0 false
@@ -73,7 +73,7 @@ int delimiter_check(char c, char *delimiter)
 
 
 /**
- * check_interactive - defines a function
+ * check_interactive - defines a function 
  * @info: pointer argument to info_t
  * Return: 1 interactive mode, 0 non interactive
  *
