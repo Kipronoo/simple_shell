@@ -3,7 +3,6 @@
  * main - entry point
  * @ac: argument count
  * @av: pointer to pointer argument vector
- * 
  * Return: 0 on success otherwise 1
  */
 int main(int ac, char **av)
