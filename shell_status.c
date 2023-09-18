@@ -4,7 +4,6 @@
  * command_exec - function to determine a file is executable command
  * @info: pointer to the code_t struct
  * @path: file path
- * 
  * Return: 1 if true, 0 otherwise
  */
 int command_exec(code_t *info, char *path)
