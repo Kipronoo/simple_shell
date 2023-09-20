@@ -84,11 +84,7 @@ ssize_t buffer_command(code_t *info, char **buffer, size_t *length)
 		free(*buffer);
 		*buffer = NULL;
 		signal(SIGINT, sigintHandler);
-#if USE_GETLINE
-		read = getline(buffer, &len, stdin);
-#else
 		read = custom_getline(info, buffer, &len);
-#endif
 		if (read > 0)
 		{
 			if ((*buffer)[read - 1] == '\n')
