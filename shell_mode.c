@@ -96,7 +96,7 @@ int custom_exit(code_t *info)
 		if (code_exit == -1)
 		{
 			info->status = 2;
-			custom_print_error(info, "Invalid number: ");
+			custom_print_error(info, "Illegal number: ");
 			custom_puts(info->argv[1]);
 			custom_putchar('\n');
 			return (1);
