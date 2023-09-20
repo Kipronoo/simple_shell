@@ -95,7 +95,6 @@ ssize_t buffer_command(code_t *info, char **buffer, size_t *length)
 			info->linecount_flag = 1;
 			replace_instance(*buffer);
 			add_history(info, *buffer, info->histcount++);
-			if (custom_strchr(*buffer, ';'))
 			{
 				*length = read;
 				info->cmd_buf = buffer;
